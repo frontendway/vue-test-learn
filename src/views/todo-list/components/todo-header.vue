@@ -17,7 +17,10 @@ export default {
   methods: {
     addItem () {
       if (this.value.trim()) {
-        this.$emit('add', this.value)
+        this.$emit('add', {
+          value: this.value,
+          status: 'div'
+        })
         this.value = ''
       }
     }

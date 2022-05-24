@@ -1,7 +1,12 @@
 <template>
   <div class="todo-list">
     <todo-header @add="add" />
-    <undo-list :list="undoList" @onDelete="onDelete" />
+    <undo-list
+      :list="undoList"
+      @onDelete="onDelete"
+      @onToggleStatus="onToggleStatus"
+      @onChangeValue="onChangeValue"
+    />
   </div>
 </template>
 
@@ -13,8 +18,8 @@ export default {
   name: 'todoList',
 
   components: {
-    'todo-header': TodoHeader,
-    'undo-list': UndoList
+    TodoHeader,
+    UndoList
   },
 
   data () {
@@ -29,6 +34,12 @@ export default {
     },
     onDelete (index) {
       this.undoList.splice(index, 1)
+    },
+    onToggleStatus (status, index) {
+      this.undoList[index].status = status
+    },
+    onChangeValue (value, index) {
+      this.undoList[index].value = value
     }
   }
 }
