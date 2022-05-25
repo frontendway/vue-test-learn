@@ -1,27 +1,29 @@
 <template>
   <header class="todo-header">
-    <input type="text" @keyup.enter="addItem" data-test="input" v-model="value">
+    <input type="text" @keyup.enter="addItem($event)" data-test="header" :value="inputValue">
   </header>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'todo-header',
 
-  data () {
-    return {
-      value: ''
-    }
+  computed: {
+    ...mapState({
+      inputValue: state => state.inputValue
+    })
   },
 
   methods: {
-    addItem () {
-      if (this.value.trim()) {
+    addItem (ev) {
+      const value = ev.target.value.trim()
+      if (value) {
         this.$emit('add', {
-          value: this.value,
+          value: value,
           status: 'div'
         })
-        this.value = ''
       }
     }
   }
