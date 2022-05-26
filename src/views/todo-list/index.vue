@@ -13,6 +13,7 @@
 <script>
 import TodoHeader from './components/todo-header.vue'
 import UndoList from './components/undo-list.vue'
+import axios from 'axios'
 
 export default {
   name: 'todoList',
@@ -28,7 +29,17 @@ export default {
     }
   },
 
+  created () {
+    this.fetchList()
+  },
+
   methods: {
+    fetchList () {
+      axios.get('/getList.json')
+        .then(resp => {
+          this.undoList = resp.data
+        })
+    },
     add (value) {
       this.undoList.push(value)
     },
