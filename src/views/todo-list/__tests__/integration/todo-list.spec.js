@@ -45,13 +45,13 @@ it(`
 // it(`
 //   1. 用户进入页面 5s 后发起请求
 //   2. 渲染接口数据
-// `, (done) => {
+// `, async () => {
 //   const wrapper = mount(TodoList, { store })
 
 //   // 让 TodoList 组件中的延时函数立即执行，需搭配 jest.useFakeTimers()
 //   jest.runAllTimers()
 
-//   nextTick(() => {
+//   await nextTick(() => {
 //     const itemAll = wrapper.findAll('.item')
 //     expect(itemAll.length).toBe(2)
 //   })
