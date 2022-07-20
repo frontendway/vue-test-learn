@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-import TodoList from '../../index.vue'
-import TodoHeader from '../../components/todo-header.vue'
+import TodoList from '../src/views/todo-list/index'
+import TodoHeader from '../src/views/todo-list/components/todo-header'
 
 it('todo-list 组件初始化，undoList 为空数组', () => {
   const wrapper = shallowMount(TodoList)

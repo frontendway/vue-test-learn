@@ -1,6 +1,10 @@
 <template>
   <header class="todo-header">
-    <input type="text" @keyup.enter="addItem" data-test="input" v-model="value">
+    <input
+      type="text"
+      @keyup.enter="addItem"
+      v-model="value"
+    />
   </header>
 </template>
 

@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
-import TodoHeader from '../../components/todo-header.vue'
+import TodoHeader from '../src/views/todo-list/components/todo-header.vue'
 
 it('header 包含 input', () => {
   const wrapper = shallowMount(TodoHeader)
-  const input = wrapper.find('[data-test="input"]')
+  const input = wrapper.find('input[type="text"]')
   expect(input.exists()).toBeTruthy()
 })
 
@@ -15,14 +15,14 @@ it('header 中 input 初始值为空', () => {
 
 it('header 中 input 发生变化数据也发生变化', () => {
   const wrapper = shallowMount(TodoHeader)
-  const input = wrapper.find('[data-test="input"]')
+  const input = wrapper.find('input[type="text"]')
   input.setValue('new text')
   expect(wrapper.vm.value).toBe('new text')
 })
 
 it('header 中 input 回车，无内容时无反应', () => {
   const wrapper = shallowMount(TodoHeader)
-  const input = wrapper.find('[data-test="input"]')
+  const input = wrapper.find('input[type="text"]')
   input.setValue('')
   input.trigger('keyup.enter')
   expect(wrapper.emitted().add).toBeFalsy()
@@ -30,7 +30,7 @@ it('header 中 input 回车，无内容时无反应', () => {
 
 it('header 中 input 回车，有内容则向外派发 add 事件，且清空 input', () => {
   const wrapper = shallowMount(TodoHeader)
-  const input = wrapper.find('[data-test="input"]')
+  const input = wrapper.find('input[type="text"]')
   input.setValue('text')
   input.trigger('keyup.enter')
   expect(wrapper.emitted().add).toBeTruthy()
